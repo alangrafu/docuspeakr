@@ -106,6 +106,8 @@ content="<?
 $extra
 
 \$conf['mirror_external_uris'] = $external;
+\$conf['root'] = 'index';
+\$lodspk['graph'] = 'http://poderopedia.com/vocab';
 ?>" 
 echo "$content" > $LODSPEAKR_HOME$settings_file
 chmod 644 $settings_file
