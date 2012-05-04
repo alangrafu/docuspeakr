@@ -1,0 +1,21 @@
+SELECT ?predicate ?predicateLabelEn ?predicateDescEn ?predicateLabelEs ?predicateDescEs ?domain ?range WHERE{
+GRAPH <{{lodspk.graph}}>{
+  ?predicate a rdf:Property;
+         rdfs:label ?predicateLabelEn;
+         rdfs:comment ?predicateDescEn;
+         rdfs:label ?predicateLabelEs;
+         rdfs:comment ?predicateDescEs;
+  FILTER(lang(?predicateLabelEn) = "en")
+  FILTER(lang(?predicateDescEn) = "en")
+  FILTER(lang(?predicateLabelEs) = "es")
+  FILTER(lang(?predicateDescEs) = "es")
+  OPTIONAL{
+    ?predicate rdfs:domain ?domain
+  }
+  OPTIONAL{
+    ?predicate rdfs:range ?rnage
+  }
+}
+
+}
+order by ?predicate

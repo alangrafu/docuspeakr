@@ -1,0 +1,7 @@
+SELECT ?class ?rangeOf WHERE{
+GRAPH <{{lodspk.graph}}>{
+  ?rangeOf rdfs:range ?class
+}
+
+}
+order by ?class

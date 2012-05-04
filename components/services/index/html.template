@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <title>doc</title>
+    <link href="{{lodspk.home}}css/basic.css" rel="stylesheet" type="text/css" media="screen" />
+    <style type="text/css">
+    </style>
+  </head>
+  <body>
+
+<h1>{{first.schema.name.value}}</h1>
+<p>{{first.schema.abstract.value}}</p>
+
+
+<div>
+  <h3>Classes</h3>
+  <ul class="hlist">
+   {%for i in models.classes%}
+    <li>
+      <a href="#{{i.class.curie}}">{{i.class.curie}}</a>
+    </li>
+   {%endfor%}
+  </ul>
+</div>
+
+
+<div>
+  <h3>Predicates</h3>
+  <ul class="hlist">
+   {%for i in models.predicates%}
+    <li>
+      <a href="#{{i.predicate.curie}}">{{i.predicate.curie}}</a>
+    </li>
+   {%endfor%}
+  </ul>
+</div>
+
+    <h1>Classes</h1>
+    {% for row in models.classes %}
+    <div id="{{row.class.curie}}" class="entity">
+        <h3>
+          Class: <a href="#{{row.class.curie}}"><span class="dotted" title="{{row.class.value}}">{{row.classLabelEn.value}}</span></a>
+       </h3>
+       <strong>IRI:</strong> <a href="#{{row.class.curie}}"><span class="dotted" title="{{row.class.value}}">{{row.class.value}}</span></a>
+
+    <dl class="description">
+    <dd class="comment"><p>{{row.classDescEn.value}}</p>
+    </dd>
+      <dt>SubClass of</dt>
+      <dd>
+        {%for i in models.sub%}{%if i.sub.value == row.class.value%}
+        <a title="{{i.super.value}}" href="#{{i.super.curie}}">{{i.super.curie}}</a>
+        {%endif%}{%endfor%}
+      </dd>
+      <dt>SuperClass of</dt>
+      <dd>
+        {%for i in models.sub%}{%if i.super.value == row.class.value%}
+        <a title="{{i.sub.value}}" href="#{{i.sub.curie}}">{{i.sub.curie}}</a>
+        {%endif%}{%endfor%}
+      </dd>
+      <dt>Has domain</dt>
+      <dd>
+        {%for i in models.domainOf%}{%if i.domainOf.value == row.predicate.value%}
+        <a title="{{i.class.value}}" href="#{{i.class.curie}}">{{i.class.curie}}</a>
+        {%endif%}{%endfor%}
+      </dd>
+
+      <dt>in domain of</dt>
+      <dd>
+        {%for i in models.domainOf%}{%if i.class.value == row.class.value%}
+        <a title="{{i.domainOf.value}}" href="#{{i.domainOf.curie}}">{{i.domainOf.curie}}</a>
+        {%endif%}{%endfor%}
+      </dd>
+
+      <dt>in range of</dt>
+
+      <dd>
+        {%for i in models.rangeOf%}{%if i.class.value == row.class.value%}
+        <a title="{{i.rangeOf.value}}" href="#{{i.rangeOf.curie}}">{{i.rangeOf.curie}}</a>
+        {%endif%}{%endfor%}
+      </dd>
+
+    </dl>
+  </div>
+    {% endfor %}
+
+
+<h1>Predicates</h1>
+
+    {% for row in models.predicates %}
+    <div id="{{row.predicate.curie}}" class="entity">
+        <h3>
+          Predicate: <a href="#{{row.predicate.curie}}"><span class="dotted" title="{{row.predicate.value}}">{{row.predicateLabelEn.value}}</span></a>
+       </h3>
+       <strong>IRI:</strong> <a href="#{{row.predicate.curie}}"><span class="dotted" title="{{row.predicate.value}}">{{row.predicate.value}}<span></a>
+
+    <dl class="description">
+    <dd class="comment"><p>{{row.predicateDescEn.value}}</p>
+    </dd>
+
+      <dt>SubProperty of</dt>
+      <dd>
+        {%for i in models.sub%}{%if i.sub.value == row.predicate.value%}
+        <a title="{{i.super.value}}" href="#{{i.super.curie}}">{{i.super.curie}}</a>
+        {%endif%}{%endfor%}
+      </dd>
+      <dt>SuperProperty of</dt>
+      <dd>
+        {%for i in models.sub%}{%if i.super.value == row.predicate.value%}
+        <a title="{{i.sub.value}}" href="#{{i.sub.curie}}">{{i.sub.curie}}</a>
+        {%endif%}{%endfor%}
+      </dd>
+      <dt>Has domain</dt>
+      <dd>
+        {%for i in models.domainOf%}{%if i.domainOf.value == row.predicate.value%}
+        <a title="{{i.class.value}}" href="#{{i.class.curie}}">{{i.class.curie}}</a>
+        {%endif%}{%endfor%}
+      </dd>
+
+      <dt>Has range</dt>
+      <dd>
+        {%for i in models.rangeOf%}{%if i.rangeOf.value == row.predicate.value%}
+        <a title="{{i.class.value}}" href="#{{i.class.curie}}">{{i.class.curie}}</a>
+        {%endif%}{%endfor%}
+      </dd>
+    </dl>
+  </div>
+
+
+    {% endfor %}
+  </body>
+</html>

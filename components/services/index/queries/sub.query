@@ -1,0 +1,9 @@
+select ?sub ?super where{
+GRAPH <{{lodspk.graph}}>{
+    {
+      ?sub rdfs:subClassOf ?super
+    }UNION{
+      ?sub rdfs:subPropertyOf ?super
+    }
+  }
+}

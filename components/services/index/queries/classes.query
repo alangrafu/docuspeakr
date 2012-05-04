@@ -1,0 +1,11 @@
+SELECT ?class ?classLabelEn ?classDescEn WHERE{
+GRAPH <{{lodspk.graph}}>{
+  ?class a owl:Class;
+         rdfs:label ?classLabelEn;
+         rdfs:comment ?classDescEn;
+  FILTER(lang(?classLabelEn) = "en")
+  FILTER(lang(?classDescEn) = "en")
+}
+
+}
+order by ?class

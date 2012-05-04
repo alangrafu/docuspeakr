@@ -1,0 +1,7 @@
+SELECT ?class ?domainOf WHERE{
+GRAPH <{{lodspk.graph}}>{
+  ?domainOf rdfs:domain ?class
+}
+
+}
+order by ?class
