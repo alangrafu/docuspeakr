@@ -85,9 +85,9 @@ if [ -e "$settings_file" ]; then
   mv $settings_file $settings_backup
 fi
   
-LODSPEAKR_HOME=`pwd`/
+LODSPEAKR_HOME="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"/
   
-  content="<?
+content="<?
 
 \$conf['endpoint']['local'] = '$endpoint';
 \$conf['home'] = '$LODSPEAKR_HOME';
@@ -107,20 +107,18 @@ $extra
 
 \$conf['mirror_external_uris'] = $external;
 ?>" 
-echo "$content" > $settings_file
+echo "$content" > $LODSPEAKR_HOME$settings_file
 chmod 644 $settings_file
-echo "Created new configuration file: $settings_file"
+echo "Created new configuration file: $LODSPEAKR_HOME$settings_file"
 echo ""
 echo "WARNING: Copying $root_htaccess as .htaccess in parent directory"
 echo ""
-echo "RewriteEngine on" > $parent_htaccess
-echo >> $parent_htaccess
-echo "RewriteRule ^\$ lodspeakr/index.php [L]" >> $parent_htaccess
-cat $root_htaccess >> $parent_htaccess
-echo "RewriteRule ^(.+)\$ lodspeakr/index.php?q=\lodspeakr [L]" >> $parent_htaccess
-mkdir cache
-cp -r doc/examples/originalComponents components
-mkdir -p components/uris
+echo "RewriteEngine on" > $LODSPEAKR_HOME$parent_htaccess
+echo >> $LODSPEAKR_HOME$parent_htaccess
+echo "RewriteRule ^\$ lodspeakr/index.php [L]" >> $LODSPEAKR_HOME$parent_htaccess
+cat $root_htaccess >> $LODSPEAKR_HOME$parent_htaccess
+echo "RewriteRule ^(.+)\$ lodspeakr/index.php?q=\lodspeakr [L]" >> $LODSPEAKR_HOME$parent_htaccess
+mkdir $LODSPEAKR_HOME/cache
 bold=`tput bold`
 normal=`tput sgr0`
 echo
