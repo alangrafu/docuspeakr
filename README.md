@@ -12,3 +12,10 @@ Installation
 4. Give permission to the webserver to write `lodspeakr/cache`, `lodspeakr/meta` and `lodspeakr/meta/db.sqlite`
 
 That's it. you should see your documentation
+
+
+Demo
+----
+
+* English documentation of an ontology: http://graves.cl/myStudentOntology/index/en
+* Spanish documentation of an ontology: http://graves.cl/myStudentOntology/index/es
