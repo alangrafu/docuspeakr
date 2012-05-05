@@ -1,4 +1,4 @@
-DocuSPeaKr - OWL Documentation based on LODSPeaKr
+DocuSPeaKr - OWL Documentation system based on LODSPeaKr
 -------------------------------------------------
 Author: Alvaro Graves (alvaro@graves.cl)
 Version: 20120504
