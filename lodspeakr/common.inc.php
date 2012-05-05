@@ -52,7 +52,7 @@ $conf['debug'] = false;
 //using the modules in the following order
 $conf['modules'] = array();
 $conf['modules']['directory'] = 'classes/modules/';
-$conf['modules']['available'] = array('static','uri', 'type', 'service');
+$conf['modules']['available'] = array('static', 'service');
 global $lodspk;
 include_once('settings.inc.php');
 $conf['view']['standard']['baseUrl'] = $conf['basedir'];
