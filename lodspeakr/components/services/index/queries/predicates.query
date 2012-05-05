@@ -1,19 +1,24 @@
-SELECT ?predicate ?predicateLabelEn ?predicateDescEn ?predicateLabelEs ?predicateDescEs ?domain ?range WHERE{
+SELECT ?predicate ?predicateLabel ?predicateDesc ?predicateLabelLanguage ?predicateDescLanguage WHERE{ 
 GRAPH <{{lodspk.graph}}>{
-  ?predicate a rdf:Property;
-         rdfs:label ?predicateLabelEn;
-         rdfs:comment ?predicateDescEn;
-         rdfs:label ?predicateLabelEs;
-         rdfs:comment ?predicateDescEs;
-  FILTER(lang(?predicateLabelEn) = "en")
-  FILTER(lang(?predicateDescEn) = "en")
-  FILTER(lang(?predicateLabelEs) = "es")
-  FILTER(lang(?predicateDescEs) = "es")
+  ?predicate a rdf:Property.
   OPTIONAL{
-    ?predicate rdfs:domain ?domain
+    ?predicate 
+         rdfs:comment ?predicateDesc;
+  FILTER(lang(?predicateDesc) = "en" || lang(?predicateDesc) = "")
   }
   OPTIONAL{
-    ?predicate rdfs:range ?rnage
+    ?predicate rdfs:label ?predicateLabel;
+    FILTER(lang(?predicateLabel) = "en" || lang(?predicateLabel) = "")
+  }
+  OPTIONAL{
+    ?predicate 
+           rdfs:label ?predicateLabelLanguage;
+    FILTER(lang(?predicateLabelLanguage) = "{{lodspk.args.arg0|default:"en"}}")
+  }
+  OPTIONAL{
+    ?predicate 
+           rdfs:comment ?predicateDescLanguage;
+    FILTER(lang(?predicateDescLanguage) = "{{lodspk.args.arg0|default:"en"}}")
   }
 }
 

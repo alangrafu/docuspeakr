@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"  content="text/html; charset=utf-8">
   <head>
-    <title>doc</title>
+    <title>DocuSpeaKr</title>
+    <meta charset="UTF-8" />
     <link href="{{lodspk.home}}css/basic.css" rel="stylesheet" type="text/css" media="screen" />
     <style type="text/css">
     </style>
   </head>
   <body>
 
-<h1>{{first.schema.name.value}}</h1>
-<p>{{first.schema.abstract.value}}</p>
+<h1>{%if first.schema.nameLanguage.value%}{{first.schema.nameLanguage.value}}{%else%}{%if first.schema.name.value%}{{first.schema.name.value}}{%else%}{{first.schema.curie}}{%endif%}{%endif%}</h1>
+<p>{%if first.schema.abstractLanguage.value%}{{first.schema.abstractLanguage.value}}{%else%}{{first.schema.abstract.value}}{%endif%}</p>
 
 
 <div>
@@ -39,12 +40,12 @@
     {% for row in models.classes %}
     <div id="{{row.class.curie}}" class="entity">
         <h3>
-          Class: <a href="#{{row.class.curie}}"><span class="dotted" title="{{row.class.value}}">{{row.classLabelEn.value}}</span></a>
+          Class: <a href="#{{row.class.curie}}"><span class="dotted" title="{{row.class.value}}">{%if row.classLabelLanguage.value%}{{row.classLabelLanguage.value}}{%else%}{%if row.classLabel.value%}{{row.classLabel.value}}{%else%}{{row.class.curie}}{%endif%}{%endif%}</span></a>
        </h3>
        <strong>IRI:</strong> <a href="#{{row.class.curie}}"><span class="dotted" title="{{row.class.value}}">{{row.class.value}}</span></a>
 
     <dl class="description">
-    <dd class="comment"><p>{{row.classDescEn.value}}</p>
+    <dd class="comment"><p>{%if row.classDescLanguage.value%}{{row.classDescLanguage.value}}{%else%}{{row.classDesc.value}}{%endif%}</p>
     </dd>
       <dt>SubClass of</dt>
       <dd>
@@ -90,12 +91,12 @@
     {% for row in models.predicates %}
     <div id="{{row.predicate.curie}}" class="entity">
         <h3>
-          Predicate: <a href="#{{row.predicate.curie}}"><span class="dotted" title="{{row.predicate.value}}">{{row.predicateLabelEn.value}}</span></a>
+          Predicate: <a href="#{{row.predicate.curie}}"><span class="dotted" title="{{row.predicate.value}}">{%if row.predicateLabelLanguage.value%}{{row.predicateLabelLanguage.value}}{%else%}{{row.predicateLabel.value}}{%endif%}</span></a>
        </h3>
        <strong>IRI:</strong> <a href="#{{row.predicate.curie}}"><span class="dotted" title="{{row.predicate.value}}">{{row.predicate.value}}<span></a>
 
     <dl class="description">
-    <dd class="comment"><p>{{row.predicateDescEn.value}}</p>
+    <dd class="comment"><p>{%if row.predicateDescLanguage.value%}{{row.predicateDescLanguage.value}}{%else%}{{row.predicateDesc.value}}{%endif%}</p>
     </dd>
 
       <dt>SubProperty of</dt>

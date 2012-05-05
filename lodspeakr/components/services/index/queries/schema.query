@@ -1,9 +1,25 @@
-select ?name ?abstract where{
+select ?name ?abstract ?nameLanguage ?abstractLanguage where{
 GRAPH <{{lodspk.graph}}>{
-    ?schema a owl:Ontology;
+    ?schema a owl:Ontology.
+    OPTIONAL{
+      ?schema
             rdfs:label ?name;
+      FILTER(lang(?name) = "en" || lang(?name) = "")
+    }
+    OPTIONAL{
+      ?schema
             dcterms:abstract ?abstract .
-    FILTER(lang(?name) = "en")
-    FILTER(lang(?abstract) = "en")
+      FILTER(lang(?abstract) = "en" || lang(?name) = "")
+    }
+    OPTIONAL{
+      ?schema
+            rdfs:label ?nameLanguage;
+      FILTER(lang(?nameLanguage) = "{{lodspk.args.arg0|default:"en"}}")
+    }
+    OPTIONAL{
+      ?schema
+            dcterms:abstract ?abstractLanguage .
+      FILTER(lang(?abstractLanguage) = "{{lodspk.args.arg0|default:"en"}}")
+    }
   }
 }
