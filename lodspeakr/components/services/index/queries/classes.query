@@ -1,6 +1,10 @@
 SELECT ?class ?classLabel ?classDesc ?classLabelLanguage ?classDescLanguage WHERE{
 GRAPH <{{lodspk.graph}}>{
-  ?class a owl:Class.
+  {
+    ?class a owl:Class.
+  }UNION{
+    ?class a rdfs:Class.
+  }
    OPTIONAL{
     ?class
             rdfs:comment ?classDesc;
