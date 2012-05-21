@@ -1,13 +1,13 @@
 <?
 
-$conf['endpoint']['local'] = 'http://alia:3031/poder/query';
-$conf['home'] = '/var/www/documentacion/lodspeakr/';
-$conf['basedir'] = 'http://alia/documentacion/';
-$lodspk['graph'] = 'http://poderopedia.com/vocab';
+$conf['endpoint']['local'] = 'http://localhost:3031/sparql';
+$conf['home'] = '/var/www/docs/lodspeakr/'; #Keep the "lodspeakr/" at the end
+$conf['basedir'] = 'http://localhost/documentacion/';
+$lodspk['graph'] = 'http://example.org/vocab';
 
 
 #If you want to add/override a namespace, add it here
-$conf['ns']['vocab']   = 'http://poderopedia.com/vocab/';
+$conf['ns']['vocab']   = 'http://example.org/vocab/';
 
 #############################################
 ### Don't change anything below this line ###
