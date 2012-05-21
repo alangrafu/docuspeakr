@@ -1,6 +1,11 @@
-SELECT ?class ?rangeOf WHERE{
+SELECT ?sp ?class ?rangeOf WHERE{
 GRAPH <{{lodspk.graph}}>{
+ {
   ?rangeOf rdfs:range ?class
+ }UNION{
+  ?rangeOf rdfs:range ?sp .
+  ?class rdfs:subClassOf+ ?sp .
+ }
 }
 
 }

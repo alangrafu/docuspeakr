@@ -85,3 +85,6 @@ table{
           padding-right: 20px;
           
       }
+dt>a, dt>a:hover, dt>a:visited{font-weight:normal;}
+small{color: #999; font-weight: normal}
+small>a, small>a:hover, small>a:visited{font-weight:normal; color: #999}

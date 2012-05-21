@@ -59,26 +59,25 @@
         <a title="{{i.sub.value}}" href="#{{i.sub.curie}}">{{i.sub.curie}}</a>
         {%endif%}{%endfor%}
       </dd>
-      <dt>Has domain</dt>
-      <dd>
-        {%for i in models.domainOf%}{%if i.domainOf.value == row.predicate.value%}
-        <a title="{{i.class.value}}" href="#{{i.class.curie}}">{{i.class.curie}}</a>
-        {%endif%}{%endfor%}
-      </dd>
 
       <dt>in domain of</dt>
       <dd>
+        <dl>
         {%for i in models.domainOf%}{%if i.class.value == row.class.value%}
-        <a title="{{i.domainOf.value}}" href="#{{i.domainOf.curie}}">{{i.domainOf.curie}}</a>
+        <dt><a title="{{i.domainOf.value}}" href="#{{i.domainOf.curie}}">{{i.domainOf.curie}}</a>{%if i.sp.value%}<small> (inherited from <a href='#{{i.sp.curie}}'>{{i.sp.curie}}</a>)</small>{%endif%}</dt>
         {%endif%}{%endfor%}
+        </dl>
       </dd>
 
       <dt>in range of</dt>
 
       <dd>
+       <dl>
         {%for i in models.rangeOf%}{%if i.class.value == row.class.value%}
-        <a title="{{i.rangeOf.value}}" href="#{{i.rangeOf.curie}}">{{i.rangeOf.curie}}</a>
+        <dt><a title="{{i.rangeOf.value}}" href="#{{i.rangeOf.curie}}">{{i.rangeOf.curie}}</a>{%if i.sp.value%}<small> (inherited from <a href='#{{i.sp.curie}}'>{{i.sp.curie}}</a>)</small>{%endif%}
+        </dt>
         {%endif%}{%endfor%}
+       </dl>
       </dd>
 
     </dl>
@@ -101,28 +100,36 @@
 
       <dt>SubProperty of</dt>
       <dd>
+       <dl>
         {%for i in models.sub%}{%if i.sub.value == row.predicate.value%}
-        <a title="{{i.super.value}}" href="#{{i.super.curie}}">{{i.super.curie}}</a>
+        <dt><a title="{{i.super.value}}" href="#{{i.super.curie}}">{{i.super.curie}}</a></dt>
         {%endif%}{%endfor%}
+       </dl>
       </dd>
       <dt>SuperProperty of</dt>
       <dd>
+       <dl>
         {%for i in models.sub%}{%if i.super.value == row.predicate.value%}
-        <a title="{{i.sub.value}}" href="#{{i.sub.curie}}">{{i.sub.curie}}</a>
+        <dt><a title="{{i.sub.value}}" href="#{{i.sub.curie}}">{{i.sub.curie}}</a></dt>
         {%endif%}{%endfor%}
+       </dl>
       </dd>
       <dt>Has domain</dt>
       <dd>
+       <dl>
         {%for i in models.domainOf%}{%if i.domainOf.value == row.predicate.value%}
-        <a title="{{i.class.value}}" href="#{{i.class.curie}}">{{i.class.curie}}</a>
+        <dt><a title="{{i.class.value}}" href="#{{i.class.curie}}">{{i.class.curie}}</a>{%if i.sp.value%}<small> (subclass of <a href='#{{i.sp.curie}}'>{{i.sp.curie}}</a>)</small>{%endif%}</dt>
         {%endif%}{%endfor%}
+       </dl>
       </dd>
 
       <dt>Has range</dt>
       <dd>
+       <dl>
         {%for i in models.rangeOf%}{%if i.rangeOf.value == row.predicate.value%}
-        <a title="{{i.class.value}}" href="#{{i.class.curie}}">{{i.class.curie}}</a>
+        <dt><a title="{{i.class.value}}" href="#{{i.class.curie}}">{{i.class.curie}}</a>{%if i.sp.value%}<small> (subclass of <a href='#{{i.sp.curie}}'>{{i.sp.curie}}</a>)</small>{%endif%}</dt>
         {%endif%}{%endfor%}
+       </dl>
       </dd>
     </dl>
   </div>

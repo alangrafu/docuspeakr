@@ -1,6 +1,11 @@
-SELECT ?class ?domainOf WHERE{
+SELECT ?sp ?class ?domainOf WHERE{
 GRAPH <{{lodspk.graph}}>{
+ {
   ?domainOf rdfs:domain ?class
+ }UNION{
+  ?domainOf rdfs:domain ?sp .
+  ?class rdfs:subClassOf+ ?sp .
+ }
 }
 
 }
