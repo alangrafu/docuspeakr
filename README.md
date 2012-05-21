@@ -1,7 +1,7 @@
 DocuSPeaKr - OWL Documentation system based on LODSPeaKr
 -------------------------------------------------
 Author: Alvaro Graves (alvaro@graves.cl)
-Version: 20120504
+Version: 20120521
 
 Installation
 ------------
