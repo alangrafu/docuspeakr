@@ -133,9 +133,9 @@
       </dd>
     </dl>
   </div>
-<footer>
-  <p><strong>Documentation generated using <a href="ihttps://github.com/alangrafu/docuspeakr">DocuSPeaKr</a></strong></p>
-</footer>
     {% endfor %}
+<footer>
+  <h3><strong>Documentation generated using <a href="ihttps://github.com/alangrafu/docuspeakr">DocuSPeaKr</a></strong></h3>
+</footer>
   </body>
 </html>
