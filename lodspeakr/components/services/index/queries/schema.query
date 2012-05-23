@@ -3,7 +3,7 @@ select ?name ?abstract ?nameLanguage ?abstractLanguage where{
     ?schema a owl:Ontology.
     OPTIONAL{
       ?schema
-            rdfs:label ?name;
+            rdfs:label ?name.
       FILTER(lang(?name) = "en" || lang(?name) = "")
     }
     OPTIONAL{
@@ -13,7 +13,7 @@ select ?name ?abstract ?nameLanguage ?abstractLanguage where{
     }
     OPTIONAL{
       ?schema
-            rdfs:label ?nameLanguage;
+            rdfs:label ?nameLanguage.
       FILTER(lang(?nameLanguage) = "{{lodspk.args.arg0|default:"en"}}")
     }
     OPTIONAL{
