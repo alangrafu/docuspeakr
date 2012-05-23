@@ -1,5 +1,5 @@
 SELECT ?sp ?class ?domainOf WHERE{
-GRAPH <{{lodspk.graph}}>{
+{%if lodspk.graph%}GRAPH <{{lodspk.graph}}>{%endif%}{
  {
   ?domainOf rdfs:domain ?class
  }UNION{

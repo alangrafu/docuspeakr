@@ -1,5 +1,5 @@
 SELECT ?predicate ?predicateLabel ?predicateDesc ?predicateLabelLanguage ?predicateDescLanguage WHERE{ 
-GRAPH <{{lodspk.graph}}>{
+{%if lodspk.graph%}GRAPH <{{lodspk.graph}}>{%endif%}{
   ?predicate a rdf:Property.
   OPTIONAL{
     ?predicate 

@@ -1,5 +1,5 @@
 select ?name ?abstract ?nameLanguage ?abstractLanguage where{
-GRAPH <{{lodspk.graph}}>{
+{%if lodspk.graph%}GRAPH <{{lodspk.graph}}>{%endif%}{
     ?schema a owl:Ontology.
     OPTIONAL{
       ?schema
