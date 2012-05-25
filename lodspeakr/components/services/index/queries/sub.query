@@ -1,5 +1,5 @@
 select ?sub ?super where{
-GRAPH <{{lodspk.graph}}>{
+{%if lodspk.graph%}GRAPH <{{lodspk.graph}}>{%endif%}{
     {
       ?sub rdfs:subClassOf ?super
     }UNION{

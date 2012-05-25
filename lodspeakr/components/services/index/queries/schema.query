@@ -1,9 +1,9 @@
 select ?name ?abstract ?nameLanguage ?abstractLanguage where{
-GRAPH <{{lodspk.graph}}>{
+{%if lodspk.graph%}GRAPH <{{lodspk.graph}}>{%endif%}{
     ?schema a owl:Ontology.
     OPTIONAL{
       ?schema
-            rdfs:label ?name;
+            rdfs:label ?name.
       FILTER(lang(?name) = "en" || lang(?name) = "")
     }
     OPTIONAL{
@@ -13,7 +13,7 @@ GRAPH <{{lodspk.graph}}>{
     }
     OPTIONAL{
       ?schema
-            rdfs:label ?nameLanguage;
+            rdfs:label ?nameLanguage.
       FILTER(lang(?nameLanguage) = "{{lodspk.args.arg0|default:"en"}}")
     }
     OPTIONAL{

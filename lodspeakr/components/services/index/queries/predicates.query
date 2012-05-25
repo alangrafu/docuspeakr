@@ -1,23 +1,23 @@
-SELECT distinct ?predicate ?predicateLabel ?predicateDesc ?predicateLabelLanguage ?predicateDescLanguage WHERE{ 
-GRAPH <{{lodspk.graph}}>{
+SELECT ?predicate ?predicateLabel ?predicateDesc ?predicateLabelLanguage ?predicateDescLanguage WHERE{ 
+{%if lodspk.graph%}GRAPH <{{lodspk.graph}}>{%endif%}{
   ?predicate a rdf:Property.
   OPTIONAL{
     ?predicate 
-         rdfs:comment ?predicateDesc;
+         rdfs:comment ?predicateDesc.
   FILTER(lang(?predicateDesc) = "en" || lang(?predicateDesc) = "")
   }
   OPTIONAL{
-    ?predicate rdfs:label ?predicateLabel;
+    ?predicate rdfs:label ?predicateLabel.
     FILTER(lang(?predicateLabel) = "en" || lang(?predicateLabel) = "")
   }
   OPTIONAL{
     ?predicate 
-           rdfs:label ?predicateLabelLanguage;
+           rdfs:label ?predicateLabelLanguage.
     FILTER(lang(?predicateLabelLanguage) = "{{lodspk.args.arg0|default:"en"}}")
   }
   OPTIONAL{
     ?predicate 
-           rdfs:comment ?predicateDescLanguage;
+           rdfs:comment ?predicateDescLanguage.
     FILTER(lang(?predicateDescLanguage) = "{{lodspk.args.arg0|default:"en"}}")
   }
 }

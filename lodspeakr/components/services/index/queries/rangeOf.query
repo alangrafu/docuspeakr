@@ -1,5 +1,5 @@
 SELECT ?sp ?class ?rangeOf WHERE{
-GRAPH <{{lodspk.graph}}>{
+{%if lodspk.graph%}GRAPH <{{lodspk.graph}}>{%endif%}{
  {
   ?rangeOf rdfs:range ?class
  }UNION{
