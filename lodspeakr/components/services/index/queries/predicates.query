@@ -1,4 +1,4 @@
-SELECT ?predicate ?predicateLabel ?predicateDesc ?predicateLabelLanguage ?predicateDescLanguage WHERE{ 
+SELECT distinct ?predicate ?predicateLabel ?predicateDesc ?predicateLabelLanguage ?predicateDescLanguage WHERE{ 
 GRAPH <{{lodspk.graph}}>{
   ?predicate a rdf:Property.
   OPTIONAL{
@@ -22,5 +22,5 @@ GRAPH <{{lodspk.graph}}>{
   }
 }
 
-}
+}group by ?predicate ?predicateLabel ?predicateDesc ?predicateLabelLanguage ?predicateDescLanguage
 order by ?predicate

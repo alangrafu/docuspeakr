@@ -1,4 +1,4 @@
-SELECT ?class ?classLabel ?classDesc ?classLabelLanguage ?classDescLanguage WHERE{
+SELECT DISTINCT ?class ?classLabel ?classDesc ?classLabelLanguage ?classDescLanguage WHERE{
 GRAPH <{{lodspk.graph}}>{
   {
     ?class a owl:Class.
@@ -26,5 +26,5 @@ GRAPH <{{lodspk.graph}}>{
   }
 }
 
-}
+}group by ?class ?classLabel ?classDesc ?classLabelLanguage ?classDescLanguage
 order by ?class
