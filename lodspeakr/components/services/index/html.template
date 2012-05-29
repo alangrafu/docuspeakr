@@ -38,15 +38,16 @@
 
     <h1>Classes</h1>
     {% for row in models.classes %}
+    
+    
+    
     <div id="{{row.class.curie}}" class="entity">
         <h3>
-          Class: <a href="#{{row.class.curie}}"><span class="dotted" title="{{row.class.value}}">{%if row.classLabelLanguage.value%}{{row.classLabelLanguage.value}}{%else%}{%if row.classLabel.value%}{{row.classLabel.value}}{%else%}{{row.class.curie}}{%endif%}{%endif%}</span></a>
+          <span class="dotted" title="{{row.class.value}}">{%if row.classLabelLanguage.value%}{{row.classLabelLanguage.value}}{%else%}{%if row.classLabel.value%}{{row.classLabel.value}}{%else%}{{row.class.curie}}{%endif%}{%endif%}</span> - <a href="#{{row.class.curie}}"><span class="dotted" title="{{row.class.value}}">{{row.class.value}}</span></a>
        </h3>
-       <strong>IRI:</strong> <a href="#{{row.class.curie}}"><span class="dotted" title="{{row.class.value}}">{{row.class.value}}</span></a>
+       
 
-    <dl class="description">
-    <dd class="comment"><p>{%if row.classDescLanguage.value%}{{row.classDescLanguage.value}}{%else%}{{row.classDesc.value}}{%endif%}</p>
-    </dd>
+    <p>{%if row.classDescLanguage.value%}{{row.classDescLanguage.value}}{%else%}{{row.classDesc.value}}{%endif%}</p>
       <dt>SubClass of</dt>
       <dd>
         {%for i in models.sub%}{%if i.sub.value == row.class.value%}
@@ -59,18 +60,7 @@
         <a title="{{i.sub.value}}" href="#{{i.sub.curie}}">{{i.sub.curie}}</a>
         {%endif%}{%endfor%}
       </dd>
-
-      <dt>in domain of</dt>
-      <dd>
-        <dl>
-        {%for i in models.domainOf%}{%if i.class.value == row.class.value%}
-        <dt><a title="{{i.domainOf.value}}" href="#{{i.domainOf.curie}}">{{i.domainOf.curie}}</a>{%if i.sp.value%}<small> (inherited from <a href='#{{i.sp.curie}}'>{{i.sp.curie}}</a>)</small>{%endif%}</dt>
-        {%endif%}{%endfor%}
-        </dl>
-      </dd>
-
-      <dt>in range of</dt>
-
+      <dt>In range of</dt>
       <dd>
        <dl>
         {%for i in models.rangeOf%}{%if i.class.value == row.class.value%}
@@ -79,6 +69,22 @@
         {%endif%}{%endfor%}
        </dl>
       </dd>
+
+      <table class="properties">
+        <tr><th class="property-header" colspan="3">Properties for {{row.class.curie}}</th></tr>
+        <tr><th class="property-header" style="min-width:200px">Name</th><th class="property-header" style="min-width:200px">Expected Type</th><th class="property-header">Description</th></tr>
+        {%for i in models.domainOf%}{%if i.class.value == row.class.value%}
+        {%ifchanged i.sp.value%}
+        <tr><th class="property-header" colspan="3">{%if i.sp.value%}Properties from <a href="#{{i.sp.curie}}">{{i.sp.curie}}</a>{%else%}Properties from {{row.class.curie}}{%endif%}</th></tr>
+        {%endifchanged%}
+        <tr><td class="property-header"><a title="{{i.domainOf.value}}" href="#{{i.domainOf.curie}}">{{i.domainOf.curie}}</a></td>
+        <td class="property-cell">{%if i.range.value%}<a href='#{{i.range.curie}}'>{{i.range.curie}}</a>{%else%}None defined{%endif%}</td>
+        <td class="property-cell">{%if i.predicateDescLanguage.value%}{{i.predicateDescLanguage.value}}{%else%}{{i.predicateDesc.value}}{%endif%}</td>
+        </tr>
+        {%endif%}{%endfor%}
+        
+      </table>
+
 
     </dl>
   </div>

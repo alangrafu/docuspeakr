@@ -1,4 +1,4 @@
-SELECT ?sp ?class ?domainOf WHERE{
+SELECT distinct ?sp ?class ?domainOf ?predicateDesc ?predicateDescLanguage ?range WHERE{
 {%if lodspk.graph%}GRAPH <{{lodspk.graph}}>{%endif%}{
  {
   ?domainOf rdfs:domain ?class
@@ -6,7 +6,19 @@ SELECT ?sp ?class ?domainOf WHERE{
   ?domainOf rdfs:domain ?sp .
   ?class rdfs:subClassOf+ ?sp .
  }
-}
-
-}
-order by ?class
+ OPTIONAL{
+    ?domainOf 
+         rdfs:comment ?predicateDesc.
+  FILTER(lang(?predicateDesc) = "en" || lang(?predicateDesc) = "")
+  } 
+  OPTIONAL{
+    ?domainOf 
+           rdfs:comment ?predicateDescLanguage.
+    FILTER(lang(?predicateDescLanguage) = "{{lodspk.args.arg0|default:"en"}}")
+  }
+  OPTIONAL{
+    ?domainOf rdfs:range ?range
+  }
+ }
+}group by ?sp ?class ?domainOf ?predicateDesc ?range ?predicateDescLanguage
+order by ?sp

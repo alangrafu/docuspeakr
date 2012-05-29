@@ -71,6 +71,27 @@ td{
 table{
   width: 50%;
 }
+table.properties{
+  margin:30px;
+  width:80%;
+  border: 1px solid #98A0A6
+}
+.property-header{
+  background: #C7CBCE;
+  font-family: Courier, monospace;
+  font-size: 90%;
+  color: #3A4956;
+  padding:5px;
+  text-align:left;
+  border-spacing: 2px;
+}
+.property-cell{
+  padding:5px;
+  font-size: 90%;
+  border-spacing: 2px;
+}
+th{
+border-spacing: 2px;}
 .hlist {
           border: 1px solid navy;
           padding:5px;
