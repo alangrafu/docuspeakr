@@ -90,6 +90,11 @@ table.properties{
   font-size: 90%;
   border-spacing: 2px;
 }
+
+li.mainlist {border-right: 2px solid #98A0A6 ;
+margin-right: 13px;
+}
+
 th{
 border-spacing: 2px;}
 .hlist {

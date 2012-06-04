@@ -17,9 +17,7 @@
   <h3>Classes</h3>
   <ul class="hlist">
    {%for i in models.classes%}
-    <li>
-      <a href="#{{i.class.curie}}">{{i.class.curie}}</a>
-    </li>
+    <li class="mainlist"><a href="#{{i.class.curie}}">{{i.class.curie}}</a></li>
    {%endfor%}
   </ul>
 </div>
@@ -29,9 +27,7 @@
   <h3>Predicates</h3>
   <ul class="hlist">
    {%for i in models.predicates%}
-    <li>
-      <a href="#{{i.predicate.curie}}">{{i.predicate.curie}}</a>
-    </li>
+    <li class="mainlist"><a href="#{{i.predicate.curie}}">{{i.predicate.curie}}</a></li>
    {%endfor%}
   </ul>
 </div>
