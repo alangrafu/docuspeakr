@@ -5,21 +5,21 @@ SELECT ?predicate ?predicateLabel ?predicateDesc ?predicateLabelLanguage ?predic
   FILTER(str(?predType) != "http://www.w3.org/2002/07/owl#DatatypeProperty" && str(?predType) != "http://www.w3.org/2002/07/owl#ObjectProperty")
   OPTIONAL{
     ?predicate 
-         rdfs:comment ?predicateDesc.
+         {{lodspk.comment|default:"rdfs:comment"}} ?predicateDesc.
   FILTER(lang(?predicateDesc) = "en" || lang(?predicateDesc) = "")
   }
   OPTIONAL{
-    ?predicate rdfs:label ?predicateLabel.
+    ?predicate {{lodspk.label|default:"rdfs:label"}} ?predicateLabel.
     FILTER(lang(?predicateLabel) = "en" || lang(?predicateLabel) = "")
   }
   OPTIONAL{
     ?predicate 
-           rdfs:label ?predicateLabelLanguage.
+           {{lodspk.label|default:"rdfs:label"}} ?predicateLabelLanguage.
     FILTER(lang(?predicateLabelLanguage) = "{{lodspk.args.arg0|default:"en"}}")
   }
   OPTIONAL{
     ?predicate 
-           rdfs:comment ?predicateDescLanguage.
+           {{lodspk.comment|default:"rdfs:comment"}} ?predicateDescLanguage.
     FILTER(lang(?predicateDescLanguage) = "{{lodspk.args.arg0|default:"en"}}")
   }
 }

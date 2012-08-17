@@ -3,21 +3,21 @@ SELECT ?predicate ?predicateLabel ?predicateDesc ?predicateLabelLanguage ?predic
   ?predicate a owl:ObjectProperty.
   OPTIONAL{
     ?predicate 
-         rdfs:comment ?predicateDesc.
+         {{lodspk.comment|default:"rdfs:comment"}} ?predicateDesc.
   FILTER(lang(?predicateDesc) = "en" || lang(?predicateDesc) = "")
   }
   OPTIONAL{
-    ?predicate rdfs:label ?predicateLabel.
+    ?predicate {{lodspk.label|default:"rdfs:label"}} ?predicateLabel.
     FILTER(lang(?predicateLabel) = "en" || lang(?predicateLabel) = "")
   }
   OPTIONAL{
     ?predicate 
-           rdfs:label ?predicateLabelLanguage.
+           {{lodspk.label|default:"rdfs:label"}} ?predicateLabelLanguage.
     FILTER(lang(?predicateLabelLanguage) = "{{lodspk.args.arg0|default:"en"}}")
   }
   OPTIONAL{
     ?predicate 
-           rdfs:comment ?predicateDescLanguage.
+           {{lodspk.comment|default:"rdfs:comment"}} ?predicateDescLanguage.
     FILTER(lang(?predicateDescLanguage) = "{{lodspk.args.arg0|default:"en"}}")
   }
 }
