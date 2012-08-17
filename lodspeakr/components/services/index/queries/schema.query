@@ -1,4 +1,4 @@
-select ?name ?abstract ?nameLanguage ?abstractLanguage where{
+select ?name ?abstract ?nameLanguage ?abstractLanguage ?version ?versionLanguage where{
 {%if lodspk.graph%}GRAPH <{{lodspk.graph}}>{%endif%}{
     ?schema a owl:Ontology.
     OPTIONAL{
@@ -20,6 +20,16 @@ select ?name ?abstract ?nameLanguage ?abstractLanguage where{
       ?schema
             dcterms:abstract ?abstractLanguage .
       FILTER(lang(?abstractLanguage) = "{{lodspk.args.arg0|default:"en"}}")
+    }
+    OPTIONAL{
+      ?schema
+            owl:versionInfo ?versionLanguage .
+      FILTER(lang(?versionLanguage) = "{{lodspk.args.arg0|default:"en"}}")
+    }
+    OPTIONAL{
+      ?schema
+            owl:versionInfo ?version .
+      FILTER(lang(?version) = "" || lang(?version) = "en")
     }
   }
 }
