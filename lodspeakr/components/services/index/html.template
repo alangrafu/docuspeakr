@@ -8,10 +8,11 @@
     </style>
   </head>
   <body>
-
+{%include "../../includes/beginBody.inc"%}
 <h1>{%if first.schema.nameLanguage.value%}{{first.schema.nameLanguage.value}}{%else%}{%if first.schema.name.value%}{{first.schema.name.value}}{%else%}{{first.schema.curie}}{%endif%}{%endif%}</h1>
 <p>{%if first.schema.abstractLanguage.value%}{{first.schema.abstractLanguage.value}}{%else%}{{first.schema.abstract.value}}{%endif%}</p>
 
+{%include "../../includes/beforeClasses.inc"%}
 
 <div>
   <h3>Classes</h3>
@@ -22,6 +23,7 @@
   </ul>
 </div>
 
+{%include "../../includes/beforeObjectPredicates.inc"%}
 
 <div>
   <h3>Object Predicates</h3>
@@ -36,6 +38,9 @@
   </ul>
 </div>
 
+{%include "../../includes/beforeDatatypePredicates.inc"%}
+
+
 <div>
   <h3>Datatype Predicates</h3>
   <ul class="hlist">
@@ -48,6 +53,9 @@
   {%endif%}
   </ul>
 </div>
+
+{%include "../../includes/beforeOtherPredicates.inc"%}
+
 
 <div>
   <h3>Other Predicates</h3>
@@ -251,6 +259,8 @@
     </dl>
   </div>
     {% endfor %}
+
+{%include "../../includes/beforeFooter.inc"%}
     
 <footer>
   <h3><strong>Documentation generated using <a href="https://github.com/alangrafu/docuspeakr">DocuSPeaKr</a></strong></h3>
