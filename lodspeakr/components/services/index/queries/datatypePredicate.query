@@ -1,14 +1,13 @@
 SELECT ?predicate ?predicateLabel ?predicateDesc ?predicateLabelLanguage ?predicateDescLanguage WHERE{ 
 {%if lodspk.graph%}GRAPH <{{lodspk.graph}}>{%endif%}{
-  ?predicate a rdf:Property;
-             a ?predType .
-  FILTER(str(?predType) != "http://www.w3.org/2002/07/owl#DatatypeProperty" && str(?predType) != "http://www.w3.org/2002/07/owl#ObjectProperty")
+  ?predicate a owl:DatatypeProperty.
   OPTIONAL{
     ?predicate 
          rdfs:comment ?predicateDesc.
   FILTER(lang(?predicateDesc) = "en" || lang(?predicateDesc) = "")
   }
   OPTIONAL{
+  
     ?predicate rdfs:label ?predicateLabel.
     FILTER(lang(?predicateLabel) = "en" || lang(?predicateLabel) = "")
   }

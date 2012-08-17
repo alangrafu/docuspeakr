@@ -1,0 +1,30 @@
+SELECT ?class ?classLabel ?classDesc ?classLabelLanguage ?classDescLanguage WHERE{
+{%if lodspk.graph%}GRAPH <{{lodspk.graph}}>{%endif%}{
+  {
+    ?class a owl:Class.
+  }UNION{
+    ?class a rdfs:Class.
+  }
+   OPTIONAL{
+    ?class
+            rdfs:comment ?classDesc.
+    FILTER(lang(?classDesc) =  "" || lang(?classDesc) = "en")
+  }
+   OPTIONAL{
+    ?class   rdfs:label ?classLabel.
+    FILTER(lang(?classLabel) =  "" || lang(?classLabel) = "en")
+  }
+  OPTIONAL{
+  ?class 
+         rdfs:comment ?classDescLanguage.
+  FILTER(lang(?classDescLanguage) = "{{lodspk.args.arg0|default:"en"}}")
+  }
+  OPTIONAL{
+  ?class 
+         rdfs:label ?classLabelLanguage.
+         FILTER(lang(?classLabelLanguage) = "{{lodspk.args.arg0|default:"en"}}")
+  }
+}
+
+}group by ?class ?classLabel ?classDesc ?classLabelLanguage ?classDescLanguage
+order by ?class
