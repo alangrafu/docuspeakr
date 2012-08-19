@@ -10,8 +10,8 @@
   <body>
 {%include "../../includes/beginBody.inc"%}
 <h1>{%if first.schema.nameLanguage.value%}{{first.schema.nameLanguage.value}}{%else%}{%if first.schema.name.value%}{{first.schema.name.value}}{%else%}{{first.schema.curie}}{%endif%}{%endif%}</h1>
-<p>{%if first.schema.abstractLanguage.value%}{{first.schema.abstractLanguage.value}}{%else%}{{first.schema.abstract.value}}{%endif%}</p>
 <p>{%if first.schema.versionLanguage.value%}{{first.schema.versionLanguage.value}}{%else%}{{first.schema.version.value}}{%endif%}</p>
+<section id="abstract"><p>{%if first.schema.abstractLanguage.value%}{{first.schema.abstractLanguage.value}}{%else%}{{first.schema.abstract.value}}{%endif%}</p></section>
 
 {%include "../../includes/beforeClasses.inc"%}
 

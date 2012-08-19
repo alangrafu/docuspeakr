@@ -7,8 +7,13 @@ select ?name ?abstract ?nameLanguage ?abstractLanguage ?version ?versionLanguage
       FILTER(lang(?name) = "en" || lang(?name) = "")
     }
     OPTIONAL{
+            {
       ?schema
-            dcterms:abstract ?abstract .
+              dcterms:abstract ?abstract .
+            }UNION{
+      ?schema
+              {{lodspk.comment|default:"rdfs:comment"}} ?abstract .
+            }
       FILTER(lang(?abstract) = "en" || lang(?name) = "")
     }
     OPTIONAL{
