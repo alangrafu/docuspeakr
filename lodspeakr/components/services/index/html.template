@@ -93,16 +93,16 @@
       <dd>
         {%set counter = 0%}
         {%for i in models.sub%}{%if i.sub.value == row.class.value%}
-          {%if i.super.uri != 1%}
+          {%if i.super.blank == 1%}
           {%if counter == 0%}
           <script type="text/javascript">
           $(document).ready(blankSuperClasses("{{row.class.curie}}"));
           </script>
+          {%set counter = counter+1 %}
           {%endif%}
           {%else%}
         <a title="{{i.super.value}}" href="#{{i.super.curie}}">{{i.super.curie}}</a>
           {%endif%}
-          {%set counter = counter+1 %}
         {%endif%}{%endfor%}
           <div data-id="{{row.class.curie}}"></div>
       </dd>

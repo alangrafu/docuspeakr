@@ -1,0 +1,26 @@
+{%if lodspk.args.arg0%}
+SELECT ?s ?p ?p2 ?o WHERE{
+  GRAPH <{{lodspk.graph}}>{
+    {?s ?p {{lodspk.args.arg0}} }UNION
+    { {{lodspk.args.arg0}} ?p2 ?o }
+  }
+}
+{%else%}
+SELECT DISTINCT ?resource ?label ?labelEn WHERE {
+  GRAPH <{{lodspk.graph}}> {
+   {
+  	?resource rdf:type owl:Class.
+   }UNION{
+  	?resource rdf:type rdfs:Class.
+   }
+    OPTIONAL{ 
+      ?resource rdfs:label ?label
+      FILTER(lang(?label) = "{{lodspk.args.arg0|default:"en"}}") 
+    }
+    OPTIONAL{ 
+      ?resource rdfs:label ?labelEn
+      FILTER(lang(?classLabel) =  "" || lang(?classLabel) = "en")
+    }
+  }
+}
+{%endif%}

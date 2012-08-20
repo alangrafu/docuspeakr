@@ -1,0 +1,6 @@
+SELECT ?class ?p ?o WHERE{
+  [] rdfs:subClassOf ?class .
+  ?class a owl:Restriction;
+         ?p ?o .
+  FILTER(?p != rdf:type)
+}
