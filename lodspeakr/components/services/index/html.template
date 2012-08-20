@@ -62,7 +62,7 @@
   <h3>Other Predicates</h3>
   
   <ul class="hlist">
-  {% if models.predicate %}
+  {% if models.predicate|length > 0 %}
    {%for i in models.predicate%}
     <li class="mainlist"><a href="#{{i.predicate.curie}}">{{i.predicate.curie}}</a></li>
    {%endfor%}
