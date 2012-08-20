@@ -4,14 +4,17 @@
     <title>DocuSpeaKr</title>
     <meta charset="UTF-8" />
     <link href="{{lodspk.home}}css/basic.css" rel="stylesheet" type="text/css" media="screen" />
-    <style type="text/css">
-    </style>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    var docuspeakrHome = "{{lodspk.home}}";
+    </script>
+    <script src="{{lodspk.home}}js/ajax.js"></script>
   </head>
   <body>
 {%include "../../includes/beginBody.inc"%}
 <h1>{%if first.schema.nameLanguage.value%}{{first.schema.nameLanguage.value}}{%else%}{%if first.schema.name.value%}{{first.schema.name.value}}{%else%}{{first.schema.curie}}{%endif%}{%endif%}</h1>
+<p>{%if first.schema.abstractLanguage.value%}{{first.schema.abstractLanguage.value}}{%else%}{{first.schema.abstract.value}}{%endif%}</p>
 <p>{%if first.schema.versionLanguage.value%}{{first.schema.versionLanguage.value}}{%else%}{{first.schema.version.value}}{%endif%}</p>
-<section id="abstract"><p>{%if first.schema.abstractLanguage.value%}{{first.schema.abstractLanguage.value}}{%else%}{{first.schema.abstract.value}}{%endif%}</p></section>
 
 {%include "../../includes/beforeClasses.inc"%}
 
@@ -40,7 +43,6 @@
 </div>
 
 {%include "../../includes/beforeDatatypePredicates.inc"%}
-
 
 <div>
   <h3>Datatype Predicates</h3>
@@ -89,9 +91,20 @@
     </dl>
       <dt>SubClass of</dt>
       <dd>
+        {%set counter = 0%}
         {%for i in models.sub%}{%if i.sub.value == row.class.value%}
+          {%if i.super.uri != 1%}
+          {%if counter == 0%}
+          <script type="text/javascript">
+          $(document).ready(blankSuperClasses("{{row.class.curie}}"));
+          </script>
+          {%endif%}
+          {%else%}
         <a title="{{i.super.value}}" href="#{{i.super.curie}}">{{i.super.curie}}</a>
+          {%endif%}
+          {%set counter = counter+1 %}
         {%endif%}{%endfor%}
+          <div data-id="{{row.class.curie}}"></div>
       </dd>
       <dt>SuperClass of</dt>
       <dd>
@@ -211,8 +224,8 @@
     {% endfor %}
 
 
+    {%if models.predicate|length > 0%}
 <h1>Other Predicates</h1>
-
     {% for row in models.predicate %}
     <div id="{{row.predicate.curie}}" class="entity">
         <h3>
@@ -260,11 +273,13 @@
     </dl>
   </div>
     {% endfor %}
+    {%endif%}
 
 {%include "../../includes/beforeFooter.inc"%}
     
 <footer>
   <h3><strong>Documentation generated using <a href="https://github.com/alangrafu/docuspeakr">DocuSPeaKr</a></strong></h3>
 </footer>
+
   </body>
 </html>

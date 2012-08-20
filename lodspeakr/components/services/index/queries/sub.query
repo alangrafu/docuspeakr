@@ -6,4 +6,4 @@ select ?sub ?super where{
       ?sub rdfs:subPropertyOf ?super
     }
   }
-}
+}order by ?sub

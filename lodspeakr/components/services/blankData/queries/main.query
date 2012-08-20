@@ -1,0 +1,9 @@
+SELECT DISTINCT ?sc ?p ?o WHERE {
+{%if lodspk.graph%}GRAPH <{{lodspk.graph}}>{%endif%}{
+    {{lodspk.args.arg0}} rdfs:subClassOf ?sc .
+    ?sc ?p ?o .
+  }
+  FILTER(isBlank(?sc))
+}
+ORDER BY ?sc
+OFFSET {{lodspk.args.arg1|default:"0"}}

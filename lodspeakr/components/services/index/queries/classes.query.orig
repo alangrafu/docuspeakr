@@ -5,6 +5,7 @@ SELECT ?class ?classLabel ?classDesc ?classLabelLanguage ?classDescLanguage WHER
   }UNION{
     ?class a rdfs:Class.
   }
+  FILTER(isIRI(?class))
    OPTIONAL{
     ?class
             rdfs:comment ?classDesc.

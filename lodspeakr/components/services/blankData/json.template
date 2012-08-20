@@ -1,0 +1,16 @@
+{
+ "nodes": [
+  {%for i in models.main%}
+    {%ifchanged i.sc.value%}
+      {%if !forloop.first%}],{%endif%}
+      [
+    {%else%},
+    {%endifchanged%}
+        {
+         "predicate": "{{i.p.curie}}",
+         "object": "{{i.o.curie}}"
+        }
+   {%endfor%}
+  ]
+ ]
+}

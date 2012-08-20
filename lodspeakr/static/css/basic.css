@@ -572,3 +572,6 @@ strong.crossreference {
 div.feature-at-risk {
   color: red;
 }
+thead td{
+  font-weight: bold;
+}
